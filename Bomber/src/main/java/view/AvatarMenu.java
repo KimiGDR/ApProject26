@@ -68,9 +68,9 @@ public class AvatarMenu extends Application {
         rectangle5.setOnMouseClicked(event -> handleRectangleClick(image5));
     }
 
-    private void handleRectangleClick(Image image) {
-        App.getLoggedInUser().setAvatar(image);
+    private void handleRectangleClick(Image image5) {
     }
+
 
     public void back() throws Exception {
         (new ProfileMenu()).start(Main.stage);

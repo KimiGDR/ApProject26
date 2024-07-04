@@ -10,16 +10,19 @@ public class User {
     private String password;
     private String nicknmae;
     private String email;
-    private int indexBackground = 1;
+    private String securityQuestion;
+    private String securityAnswer;
 
     private Image avatar = new Image(String.valueOf(Main.class.getResource("/images/Avatar2.png")));
     private static ArrayList<User> allUsers = new ArrayList<>();
 
-    public User(String username, String password, String nickname, String email) {
+    public User(String username, String password, String nickname, String email, String securityQuestion, String securityAnswer) {
         this.username = username;
         this.password = password;
         this.nicknmae = nicknmae;
         this.email = email;
+        this.securityQuestion = securityQuestion;
+        this.securityAnswer = securityAnswer;
         allUsers.add(this);
     }
 
@@ -47,19 +50,36 @@ public class User {
         User.allUsers = allUsers;
     }
 
-    public Image getAvatar() {
-        return avatar;
+    public String getNicknmae() {
+        return nicknmae;
     }
 
-    public void setAvatar(Image avatar) {
-        this.avatar = avatar;
+    public String getEmail() {
+        return email;
     }
 
-    public int getIndexBackground() {
-        return this.indexBackground;
+    public String getSecurityQuestion() {
+        return securityQuestion;
     }
 
-    public void setIndexBackground(int indexBackground) {
-        this.indexBackground = indexBackground;
+    public String getSecurityAnswer() {
+        return securityAnswer;
+    }
+
+    public void setNicknmae(String nicknmae) {
+        this.nicknmae = nicknmae;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public static User getUserByUsername(String username) {
+        for (User user : allUsers) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
     }
 }

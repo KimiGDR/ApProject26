@@ -9,6 +9,10 @@ Button {
     -fx-text-fill: white;
     -fx-font-size: 12px;
     -fx-padding: 5px 10px;
+    -fx-background-radius: 5;
+    -fx-border-width: 2px;
+    -fx-border-color: purple;
+
 }
 
 .changeButton {
@@ -21,15 +25,13 @@ Button {
 TextField {
     -fx-font-size: 10px;
     -fx-text-fill: #000000;
+    -fx-background-radius: 5;
 }
 
 PasswordField {
     -fx-font-size: 10px;
     -fx-text-fill: #000000;
-}
-
-.playAsGuest {
-    -fx-background-color: rgb(250, 108, 255);
+    -fx-background-radius: 5;
 }
 
 #pane {

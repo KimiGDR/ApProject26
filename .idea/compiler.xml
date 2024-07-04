@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Bomber" options="--add-exports java.datatransfer/java.awt=Bomber,Bomber" />
+      <module name="Bomber" options="" />
     </option>
   </component>
 </project>

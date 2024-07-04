@@ -14,18 +14,14 @@ public class Logincontroller {
             return new Result(false, "password not match");
 
         App.setLoggedInUser(getUserByUsername(username));
-        return new Result(true, "login Succesful");
+        return new Result(true, "login Successful");
     }
 
     public Result loginAsGuest(String username){
         if (!isUsernameValid(username)) return new Result(false, "invalid username, please enter valid username");
         if (isUserExit(username))
             return new Result(false, "this username had already used, please enter another username");
-
-
-
-
-        return new Result(true, "login Succesful");
+        return new Result(true, "login Successful");
     }
 
     private boolean isUserExit(String username) {

@@ -28,15 +28,13 @@ public class MainMenu extends Application {
         URL url = Main.class.getResource("/FXML/Main.fxml");
         assert url != null;
         Pane root = FXMLLoader.load(url);
-
         Text text = new Text();
         text.setText(App.getLoggedInUser().getUsername());
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 15));
-        text.relocate(285, 100);
+        text.relocate(260, 100);
         root.getChildren().add(text);
 
         Rectangle rectangle = new Rectangle(270, 30, 50,50);
-        rectangle.setFill(new ImagePattern(App.getLoggedInUser().getAvatar()));
         root.getChildren().add(rectangle);
 
 
@@ -44,27 +42,11 @@ public class MainMenu extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-
-    public void continueGame() {
-    }
-
     public void goToProfileMenu() throws Exception {
         (new ProfileMenu()).start(Main.stage);
     }
-
-    public void goToScoresChart() throws Exception {
-        (new ScoresMenu()).start(Main.stage);
-    }
-
-    public void goToSetting() throws Exception {
-        (new SettingMenu()).start(Main.stage);
-    }
-
     public void logout() throws Exception {
         (new StartMenu()).start(Main.stage);
     }
 
-    public void startGame(MouseEvent mouseEvent) {
-    }
 }

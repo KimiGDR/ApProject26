@@ -4,10 +4,7 @@ import controller.SigninController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Result;
@@ -21,7 +18,9 @@ public class SigninMenu extends Application {
     public PasswordField passwordConfirm;
     public TextField nickname;
     public TextField email;
+    public ChoiceBox<String> securityQuestion;
     public TextField securityAnswer;
+    private String generatedPassword;
     SigninController controller = new SigninController();
 
     public static void main(String[] args) {
@@ -43,56 +42,57 @@ public class SigninMenu extends Application {
 
     public void checkInfo() throws Exception {
 
+
         String username = this.username.getText();
-        String password = this.password.getText();
-        String passConfirm = this.passwordConfirm.getText();
         String email = this.email.getText();
         String nickname = this.nickname.getText();
+        String securityQuestion = this.securityQuestion.getValue();
         String securityAnswer = this.securityAnswer.getText();
+        String password = this.password.getText();
+        String passwordConfirm = this.passwordConfirm.getText();
 
+        Result result = controller.checkInfo(username, password, passwordConfirm, nickname, email, securityQuestion, securityAnswer);
 
-        Result result = controller.checkInfo(username, password, passwordConfirm.getText(), nickname, email);
-
-        if (result.toString().equals("randomPassword")) {
-            PasswordField randomPass = null;
-            randomPass.setText(generateRandomPassword());
+        if (result.toString().equals("generateRandomPassword")) {
+            generatedPassword = generateRandomPassword().getText();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Random Password Generated");
-            alert.setContentText("Generated Password: " + randomPass + "\nDo you want to use this password?");
+            alert.setContentText("Generated Password: " + generatedPassword + "\nDo you want to use this password?");
             ButtonType yesButton = new ButtonType("Yes");
             ButtonType noButton = new ButtonType("No");
             alert.getButtonTypes().setAll(yesButton, noButton);
+            Result finalResult = result;
             alert.showAndWait().ifPresent(response -> {
                 if (response == yesButton) {
-                    this.password = randomPass;
-                    this.passwordConfirm = randomPass;
+                    this.password.setText(generatedPassword);
+                    this.passwordConfirm.setText(generatedPassword);
                 } else {
                     this.password.setText("");
                     this.passwordConfirm.setText("");
+                    Alert alerta = new Alert(Alert.AlertType.ERROR);
+                    alerta.setTitle("Error");
+                    alerta.setHeaderText("Registration Failed");
+                    alerta.setContentText(finalResult.toString());
+                    alerta.showAndWait();
                 }
-            });
 
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Registration Failed");
-            alert.setContentText(String.valueOf(result));
-            alert.showAndWait();
+            });
+            result = controller.checkInfo(username, password, passwordConfirm, nickname, email, securityQuestion, securityAnswer);
         }
-        if(result.isSuccessful())
-    {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("error signing in");
-        alert.setHeaderText("can't sign in.");
-        alert.setContentText(result.toString());
-        alert.show();
-    } else {
+        //Result results = controller.checkInfo(username, password, passwordConfirm, nickname, email, securityQuestion, securityAnswer);
+        if (!result.isSuccessful()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("error signing in");
+            alert.setHeaderText("can't sign in.");
+            alert.setContentText(result.toString());
+            alert.show();
+        } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("sign in successfully");
             alert.setHeaderText(":)");
             alert.setContentText(result.toString());
             alert.show();
-
+            new StartMenu(). start(Main.stage);
             try {
                 (new StartMenu()).start(Main.stage);
             } catch (Exception e) {
@@ -101,24 +101,23 @@ public class SigninMenu extends Application {
         }
     }
 
-
-    public String generateRandomPassword() {
+    public PasswordField generateRandomPassword() {
         String specialChars = "!@#$&*";
         String digits = "0123456789";
         String chars = "ZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY";
-        StringBuilder password = new StringBuilder();
+        PasswordField password = new PasswordField();
         SecureRandom random = new SecureRandom();
 
 
         for (int i = 0; i < 2; i++) {
-            password.append(specialChars.charAt(random.nextInt(specialChars.length())));
+            password.appendText(String.valueOf(specialChars.charAt(random.nextInt(specialChars.length()))));
         }
         for (int i = 0; i < 4; i++) {
-            password.append(digits.charAt(random.nextInt(digits.length())));
+            password.appendText(String.valueOf(digits.charAt(random.nextInt(digits.length()))));
         }
         for (int i = 0; i < 6; i++) {
-            password.append(chars.charAt(random.nextInt(chars.length())));
+            password.appendText(String.valueOf(chars.charAt(random.nextInt(chars.length()))));
         }
-        return password.toString();
+        return password;
     }
 }
