@@ -12,6 +12,7 @@ public class User {
     public static ArrayList<String> playerNames = new ArrayList<>();
     public static HashMap<String , User> users = new HashMap<>();
     public static ArrayList<Card> cards = new ArrayList<>();
+    public static ArrayList<Card> savedDeck = new ArrayList<>();
 
     public static String colorOfFaction;
     public static String nameOfLeader;
