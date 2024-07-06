@@ -144,6 +144,7 @@ public class CardsPageController implements Initializable {
                             newImageView.setFitWidth(100);
                             newImageView.setFitHeight(150);
                             deckCards.getChildren().add(newImageView);
+                            unitCardCounter.setText(String.valueOf(incrementCounter(Integer.parseInt(unitCardCounter.getText()))));
                             newImageView.setOnMouseClicked(newEvent -> deleteFromDeck());
                             remainHbox.getChildren().remove(imageView);
                             newHBox.getChildren().add(newImageView);
@@ -170,6 +171,7 @@ public class CardsPageController implements Initializable {
                             newImageView.setFitWidth(imageView.getFitWidth());
                             newImageView.setFitHeight(imageView.getFitHeight());
                             newImageView.setPreserveRatio(imageView.isPreserveRatio());
+                            unitCardCounter.setText(String.valueOf(decrementCounter(Integer.parseInt(unitCardCounter.getText()))));
 
                             findHBoxWithLessThanThreeImages(imageView);
                             imageView.setOnMouseClicked(newEvent -> addToDeck());
@@ -218,16 +220,16 @@ public class CardsPageController implements Initializable {
         }
     }
 
-    public String incrementCounter(int counter) {
+    public int incrementCounter(int counter) {
         counter++;
-        return String.valueOf(counter);
+        return counter;
     }
 
-    public String decrementCounter(int counter) {
+    public int decrementCounter(int counter) {
         if (counter > 0) {
             counter--;
         }
-        return String.valueOf(counter);
+        return counter;
     }
 
     private void showSaveAlert() {
