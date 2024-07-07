@@ -72,15 +72,7 @@
             <ScrollPane fx:id="availableCards" maxWidth="500">
                 <VBox fx:id="remainCards"/>
             </ScrollPane>
-            <VBox alignment="CENTER">
-                <ImageView fx:id="leaderPhoto" fitWidth="150" fitHeight="225"/>
-                <Label text="Unit Cards"/>
-                <Label fx:id="unitCardCounter" text="0"/>
-                <Label text="Spacial Cards"/>
-                <Label fx:id="spacialCardsCounter" text="0"/>
-                <Label text="Hero Cards"/>
-                <Label fx:id="heroCounter" text="0"/>
-            </VBox>
+            <ImageView fx:id="leaderPhoto" fitWidth="150" fitHeight="225"/>
             <ScrollPane fx:id="deckCardsScroll" maxWidth="500">
                 <VBox fx:id="deckCards"/>
             </ScrollPane>
@@ -90,7 +82,7 @@
     <bottom>
         <HBox>
             <Button text="Change Faction" onMouseClicked="#goFactionPage"/>
-            <Button text="Select Cards" onMouseClicked="#checkDeckCards"/>
+            <Button text="Select Cards" onMouseClicked="#goToGame"/>
         </HBox>
     </bottom>
 

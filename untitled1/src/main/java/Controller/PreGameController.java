@@ -271,18 +271,15 @@ public class PreGameController {
                 break;
 
             case "purple":
-                faction.makeFactionCards("src/main/resources/photos/Skellige");
+                //??
                 leader1.setImage(new Image("/photos/purpleLeaders/p1.png"));
                 Card.cardsName.add("Crach an Craite");
                 Card.cardAbility.put("Crach an Craite", "کارت های مرده بازیکنان را بر زده و به دسته کارت هایشان بر می گرداند");
-
                 leader2.setImage(new Image("/photos/purpleLeaders/p2.png"));
                 Card.cardsName.add("King Bran");
                 Card.cardAbility.put("King Bran", "سرباز ها فقط نیمی از قدرتشان را تحت آب و هوا از دست می دهند");
                 break;
         }
-        faction.makeHeroes();
-        faction.makeSpecials();
     }
 
     public void showLeaderInformation(ImageView imageView, String leaderName, String option) {
