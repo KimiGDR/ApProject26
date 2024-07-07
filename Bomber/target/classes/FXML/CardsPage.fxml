@@ -1,0 +1,98 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.image.ImageView?>
+<BorderPane fx:id="pane" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../CSS/styles.css"
+            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.CardsPageController">
+
+    <top>
+        <HBox alignment="CENTER" spacing="100">
+            <Label text="Faction Cards">
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+            <VBox alignment="CENTER">
+                <StackPane>
+                    <Label fx:id="northernRealms" text="Northern Realms" onMouseClicked="#findFactionName"
+                           visible="false">
+                        <font>
+                            <Font size="30.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="nilfgaardianEmpire" text="Nilfgaardian Empire" onMouseClicked="#findFactionName"
+                           visible="false">
+                        <font>
+                            <Font size="30.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="monsters" text="Monsters" onMouseClicked="#findFactionName" visible="false">
+                        <font>
+                            <Font size="30.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="scoiatael" text="Scoia'tael" onMouseClicked="#findFactionName" visible="false">
+                        <font>
+                            <Font size="30.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="skellige" text="Skellige" onMouseClicked="#findFactionName" visible="false">
+                        <font>
+                            <Font size="30.0"/>
+                        </font>
+                    </Label>
+                </StackPane>
+                <Label fx:id="leader">
+                    <font>
+                        <Font size="25.0"/>
+                    </font>
+                </Label>
+            </VBox>
+            <Label text="Deck Cards">
+                <font>
+                    <Font size="20.0"/>
+                </font>
+            </Label>
+            <BorderPane.margin>
+                <Insets bottom="10" left="10" right="10" top="20"/>
+            </BorderPane.margin>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox alignment="CENTER_LEFT" spacing="30">
+            <BorderPane.margin>
+                <Insets bottom="10" left="10" right="10" top="10"/>
+            </BorderPane.margin>
+            <ScrollPane fx:id="availableCards" maxWidth="500">
+                <VBox fx:id="remainCards"/>
+            </ScrollPane>
+            <VBox>
+                <ImageView fx:id="leaderPhoto" fitWidth="150" fitHeight="225"/>
+                <Label text="Unit Cards"/>
+                <Label fx:id="unitCardCounter" text="0"/>
+                <Label text="Spacial Cards"/>
+                <Label fx:id="spacialCardsCounter" text="0"/>
+                <Label text="Hero Cards"/>
+                <Label fx:id="heroCounter" text="0"/>
+            </VBox>
+            <ScrollPane fx:id="deckCardsScroll" maxWidth="500">
+                <VBox fx:id="deckCards"/>
+            </ScrollPane>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox>
+            <Button text="Change Faction" onMouseClicked="#goFactionPage"/>
+            <Button text="Select Cards" onMouseClicked="#checkDeckCards"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

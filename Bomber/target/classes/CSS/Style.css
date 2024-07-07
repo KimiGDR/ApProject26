@@ -1,0 +1,43 @@
+Label {
+    -fx-font-size: 18px;
+    -fx-text-fill: #3f005f;
+    -fx-font-weight: bold;
+}
+
+Button {
+    -fx-background-color: #cf7bfa;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 5;
+    -fx-border-width: 2px;
+    -fx-border-color: purple;
+
+}
+
+.changeButton {
+    -fx-background-color: rgb(255, 177, 255);
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-padding: 5px 10px;
+}
+
+TextField {
+    -fx-font-size: 10px;
+    -fx-text-fill: #000000;
+    -fx-background-radius: 5;
+}
+
+PasswordField {
+    -fx-font-size: 10px;
+    -fx-text-fill: #000000;
+    -fx-background-radius: 5;
+}
+
+#pane {
+    -fx-background-image: url("../images/background.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 600 400;
+    -fx-background-position: center center;
+    -fx-effect: dropshadow(three-pass-box, #000000, 30, 0.5, 0, 0);
+}
