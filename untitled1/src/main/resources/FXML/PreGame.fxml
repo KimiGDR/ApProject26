@@ -8,7 +8,7 @@
 
 <BorderPane fx:id="pane" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../CSS/style.css"
             xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controller.PreGameController">
+            fx:controller="controller.PreGameController">
 
     <top>
         <VBox alignment="TOP_CENTER" spacing="10">
@@ -28,27 +28,27 @@
             <HBox alignment="CENTER" spacing="20">
                 <ImageView fx:id="blueImage" fitHeight="150.0" fitWidth="95.0" onMouseClicked="#selectFaction">
                     <image>
-                        <Image url="@../photos/Norther-Realms(blue).png"/>
+                        <Image url="@../photos/factions/Norther-Realms(blue).png"/>
                     </image>
                 </ImageView>
                 <ImageView fx:id="yellowImage" fitHeight="150.0" fitWidth="95.0" onMouseClicked="#selectFaction">
                     <image>
-                        <Image url="@../photos/Nilfgaardian-Empire(yellow).png"/>
+                        <Image url="@../photos/factions/Nilfgaardian-Empire(yellow).png"/>
                     </image>
                 </ImageView>
                 <ImageView fx:id="redImage" fitHeight="150.0" fitWidth="95.0" onMouseClicked="#selectFaction">
                     <image>
-                        <Image url="@../photos/Monsters(red).png"/>
+                        <Image url="@../photos/factions/Monsters(red).png"/>
                     </image>
                 </ImageView>
                 <ImageView fx:id="greenImage" fitHeight="150.0" fitWidth="95.0" onMouseClicked="#selectFaction">
                     <image>
-                        <Image url="@../photos/Scoia'tael(green).png"/>
+                        <Image url="@../photos/factions/Scoia'tael(green).png"/>
                     </image>
                 </ImageView>
                 <ImageView fx:id="purpleImage" fitHeight="150.0" fitWidth="95.0" onMouseClicked="#selectFaction">
                     <image>
-                        <Image url="@../photos/Skellige(purple).png"/>
+                        <Image url="@../photos/factions/Skellige(purple).png"/>
                     </image>
                 </ImageView>
             </HBox>

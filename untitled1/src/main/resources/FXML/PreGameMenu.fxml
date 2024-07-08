@@ -8,7 +8,7 @@
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@../CSS/style.css"
             xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controller.PreGameController">
+            fx:controller="controller.PreGameController">
 
     <center>
         <VBox alignment="CENTER" spacing="10">
