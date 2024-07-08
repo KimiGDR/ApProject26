@@ -55,21 +55,22 @@ public class CardsPageController implements Initializable {
 
     //check
     public void findFactionName(MouseEvent mouseEvent) {
-        switch (User.colorOfFaction) {
-            case "blue":
-                showFactionInformationAlert("/photos/Norther-Realms(blue).png", "Northern Realms", "Draw a card from your deck whenever you win a round.");
+        System.out.println(User.faction.name());
+        switch (User.faction.name()) {
+            case "NORTHER_REALMS":
+                showFactionInformationAlert("/photos/factions/Norther-Realms(blue).png", "Northern Realms", "Draw a card from your deck whenever you win a round.");
                 break;
-            case "yellow":
-                showFactionInformationAlert("/photos/Nilfgaardian-Empire(yellow).png", "Nilfgaardian Empire", "Wins any round that ends in a draw.");
+            case "NILFGAARDIEN_EMPIRE":
+                showFactionInformationAlert("/photos/factions/Nilfgaardian-Empire(yellow).png", "Nilfgaardian Empire", "Wins any round that ends in a draw.");
                 break;
-            case "red":
-                showFactionInformationAlert("/photos/Monsters(red).png", "Monsters", "Keeps a random Unit Card out after each round.");
+            case "MONSTERS":
+                showFactionInformationAlert("/photos/factions/Monsters(red).png", "Monsters", "Keeps a random Unit Card out after each round.");
                 break;
-            case "green":
-                showFactionInformationAlert("/photos/Scoia'tael(green).png", "Scoia'tael", "Decides who takes first turn.");
+            case "SCOIATAEL":
+                showFactionInformationAlert("/photos/factions/Scoia'tael(green).png", "Scoia'tael", "Decides who takes first turn.");
                 break;
-            case "purple":
-                showFactionInformationAlert("/photos/Skellige(purple).png", "Skellige", "2 random cards from the graveyard are placed on the battled at the start of the third round.");
+            case "SKELLIGE":
+                showFactionInformationAlert("/photos/factions/Skellige(purple).png", "Skellige", "2 random cards from the graveyard are placed on the battled at the start of the third round.");
                 break;
         }
     }

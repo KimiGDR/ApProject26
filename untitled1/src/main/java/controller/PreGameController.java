@@ -185,10 +185,10 @@ public class PreGameController {
 
         switch (factionColor) {
             case "blue":
+                leader1.setImage(new Image("/photos/blueLeaders/b1.png"));
                 User.faction = Faction.NORTHER_REALMS;
                 Card.cardAbility.put("The Siegemaster", "یک کارت impenetrable fog را از دسته کارت های شما انتخاب و بازی می شود" +
                         "(دقت شود اگر این کارت در دسته کارت های شما نبود نوبت به حریف می رسد و هیچ اتفاقی نمی افتد)");
-                leader1.setImage(new Image("/photos/leaders/" + Card.cardAbility.keySet()));
 
                 leader2.setImage(new Image("/photos/blueLeaders/b2.png"));
                 Card.leadersName.add("The Steel-Forged");
