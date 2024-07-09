@@ -16,6 +16,7 @@ import model.Card;
 import model.UnitCards;
 import model.User;
 import view.CardsPage;
+import view.Game;
 import view.PreGame;
 
 import java.net.URL;
@@ -29,7 +30,7 @@ public class CardsPageController implements Initializable {
     public ScrollPane availableCards, deckCardsScroll;
     public ImageView leaderPhoto;
     public VBox deckCards, remainCards;
-    public Label countOfUnitCards, countOfSpecialCards, countOfHeroes;
+    public Label countOfUnitCards, countOfSpecialCards;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -148,9 +149,7 @@ public class CardsPageController implements Initializable {
                             newHBox.getChildren().add(newImageView);
                             for (UnitCards unitCard : Card.cardsOfFaction) {
                                 if (Objects.equals(unitCard.getName(), imageView.getId())) {
-                                    if (unitCard.isHero()) {
-                                        countOfHeroes.setText(Integer.toString(Integer.parseInt(countOfHeroes.getText()) + 1));
-                                    } else if (unitCard.getFaction() == null) {
+                                    if (unitCard.getFaction() == null) {
                                         countOfSpecialCards.setText(Integer.toString(Integer.parseInt(countOfSpecialCards.getText()) + 1));
                                     } else {
                                         countOfUnitCards.setText(Integer.toString(Integer.parseInt(countOfUnitCards.getText()) + 1));
@@ -185,6 +184,16 @@ public class CardsPageController implements Initializable {
                                         if (newImageViewNode instanceof ImageView) {
                                             ImageView newImageView = (ImageView) newImageViewNode;
                                             if (Objects.equals(newImageView.getId(), imageView.getId())) {
+                                                for (UnitCards unitCard : Card.cardsOfFaction) {
+                                                    if (Objects.equals(unitCard.getName(), imageView.getId())) {
+                                                        if (unitCard.getFaction() == null) {
+                                                            countOfSpecialCards.setText(Integer.toString(Integer.parseInt(countOfSpecialCards.getText()) - 1));
+                                                        } else {
+                                                            countOfUnitCards.setText(Integer.toString(Integer.parseInt(countOfUnitCards.getText()) - 1));
+                                                        }
+                                                        break;
+                                                    }
+                                                }
                                                 newImageView.setImage(imageView.getImage());
                                                 newImageView.setFitWidth(imageView.getFitWidth());
                                                 newImageView.setFitHeight(imageView.getFitHeight());
@@ -203,18 +212,36 @@ public class CardsPageController implements Initializable {
     }
 
     public void showDeck() {
+    }
 
+    public void showAlertOfDeck(String kind) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        switch (kind) {
+            case "unit":
+                alert.setHeaderText("Too less unit cards");
+                alert.setContentText("You can choose 22 or more unit cards");
+                alert.showAndWait();
+                break;
+            case "special":
+                alert.setHeaderText("Too much special cards");
+                alert.setContentText("You can choose 10 or less special cards");
+                alert.showAndWait();
+
+        }
     }
 
     public void goToGame(MouseEvent mouseEvent) {
-        for (Node hboxNode : deckCards.getChildren()) {
-            if (hboxNode instanceof HBox) {
-                HBox remainHbox = (HBox) hboxNode;
-                for (Node imageViewNode : remainHbox.getChildren()) {
-                    if (imageViewNode instanceof ImageView) {
-
-                    }
-                }
+        if (Integer.parseInt(countOfUnitCards.getText()) < 22)
+            showAlertOfDeck("unit");
+        else if (Integer.parseInt(countOfSpecialCards.getText()) > 10)
+            showAlertOfDeck("special");
+        else {
+            Game game = new Game();
+            try {
+                game.start(CardsPage.stage);
+            } catch (
+                    Exception e) {
+                e.printStackTrace();
             }
         }
     }

@@ -78,8 +78,6 @@
                 <Label fx:id="countOfUnitCards" text="0"/>
                 <Label text="Special Cards"/>
                 <Label fx:id="countOfSpecialCards" text="0"/>
-                <Label text="Heroes"/>
-                <Label fx:id="countOfHeroes" text="0"/>
             </VBox>
             <ScrollPane fx:id="deckCardsScroll" maxWidth="500">
                 <VBox fx:id="deckCards"/>
