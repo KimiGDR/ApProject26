@@ -13,11 +13,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Card;
+import model.UnitCards;
 import model.User;
 import view.CardsPage;
 import view.PreGame;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CardsPageController implements Initializable {
@@ -27,6 +29,7 @@ public class CardsPageController implements Initializable {
     public ScrollPane availableCards, deckCardsScroll;
     public ImageView leaderPhoto;
     public VBox deckCards, remainCards;
+    public Label countOfUnitCards, countOfSpecialCards, countOfHeroes;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -49,13 +52,12 @@ public class CardsPageController implements Initializable {
                 break;
         }
         leader.setText(User.nameOfLeader);
-//        leaderPhoto.setImage(Card.leadersName.get(User.nameOfLeader));
+        Image image = new Image("/photos/leaders/" + User.nameOfLeader + ".png");
+        leaderPhoto.setImage(image);
         showCards();
     }
 
-    //check
     public void findFactionName(MouseEvent mouseEvent) {
-        System.out.println(User.faction.name());
         switch (User.faction.name()) {
             case "NORTHER_REALMS":
                 showFactionInformationAlert("/photos/factions/Norther-Realms(blue).png", "Northern Realms", "Draw a card from your deck whenever you win a round.");
@@ -94,6 +96,7 @@ public class CardsPageController implements Initializable {
         }
     }
 
+
     public void showCards() {
         remainCards.setSpacing(10);
 
@@ -102,6 +105,7 @@ public class CardsPageController implements Initializable {
             hbox.setSpacing(3);
             for (int j = 3 * i; j < 3 * i + 3 && j < Card.cardsOfFaction.size(); j++) {
                 ImageView imageView = new ImageView(Card.cardsOfFaction.get(j).getImagePath());
+                imageView.setId(Card.cardsOfFaction.get(j).getName());
                 imageView.setFitWidth(100);
                 imageView.setFitHeight(150);
                 hbox.getChildren().add(imageView);
@@ -133,14 +137,27 @@ public class CardsPageController implements Initializable {
                         ImageView imageView = (ImageView) imageViewNode;
                         imageView.setOnMouseClicked(event -> {
                             ImageView newImageView = new ImageView(imageView.getImage());
-                            newImageView.setPreserveRatio(imageView.isPreserveRatio());
+                            newImageView.setId(imageView.getId());
+
 
                             newImageView.setFitWidth(100);
                             newImageView.setFitHeight(150);
                             deckCards.getChildren().add(newImageView);
                             newImageView.setOnMouseClicked(newEvent -> deleteFromDeck());
-                            remainHbox.getChildren().remove(imageView);
+                            imageView.setImage(null);
                             newHBox.getChildren().add(newImageView);
+                            for (UnitCards unitCard : Card.cardsOfFaction) {
+                                if (Objects.equals(unitCard.getName(), imageView.getId())) {
+                                    if (unitCard.isHero()) {
+                                        countOfHeroes.setText(Integer.toString(Integer.parseInt(countOfHeroes.getText()) + 1));
+                                    } else if (unitCard.getFaction() == null) {
+                                        countOfSpecialCards.setText(Integer.toString(Integer.parseInt(countOfSpecialCards.getText()) + 1));
+                                    } else {
+                                        countOfUnitCards.setText(Integer.toString(Integer.parseInt(countOfUnitCards.getText()) + 1));
+                                    }
+                                    break;
+                                }
+                            }
 
                             if (!deckCards.getChildren().contains(newHBox) && !newHBox.getChildren().isEmpty()) {
                                 deckCards.getChildren().add(newHBox);
@@ -160,28 +177,26 @@ public class CardsPageController implements Initializable {
                     if (imageViewNode instanceof ImageView) {
                         ImageView imageView = (ImageView) imageViewNode;
                         imageView.setOnMouseClicked(event -> {
-                            ImageView newImageView = new ImageView(imageView.getImage());
-                            newImageView.setFitWidth(imageView.getFitWidth());
-                            newImageView.setFitHeight(imageView.getFitHeight());
-                            newImageView.setPreserveRatio(imageView.isPreserveRatio());
 
-                            findHBoxWithLessThanThreeImages(imageView);
-                            imageView.setOnMouseClicked(newEvent -> addToDeck());
-
-                            deckHbox.getChildren().remove(imageView);
+                            for (Node destHboxNode : remainCards.getChildren()) {
+                                if (destHboxNode instanceof HBox) {
+                                    HBox remainHbox = (HBox) destHboxNode;
+                                    for (Node newImageViewNode : remainHbox.getChildren()) {
+                                        if (newImageViewNode instanceof ImageView) {
+                                            ImageView newImageView = (ImageView) newImageViewNode;
+                                            if (Objects.equals(newImageView.getId(), imageView.getId())) {
+                                                newImageView.setImage(imageView.getImage());
+                                                newImageView.setFitWidth(imageView.getFitWidth());
+                                                newImageView.setFitHeight(imageView.getFitHeight());
+                                                newImageView.setOnMouseClicked(newEvent -> addToDeck());
+                                                deckHbox.getChildren().remove(imageView);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         });
                     }
-                }
-            }
-        }
-    }
-
-    private void findHBoxWithLessThanThreeImages(ImageView imageView) {
-        for (int i = remainCards.getChildren().size() - 1; i >= 0; i--) {
-            if (remainCards.getChildren().get(i) instanceof HBox) {
-                HBox hbox = (HBox) remainCards.getChildren().get(i);
-                if (hbox.getChildren().stream().filter(child -> child instanceof ImageView).count() < 3) {
-                    hbox.getChildren().add(imageView);
                 }
             }
         }
@@ -192,7 +207,7 @@ public class CardsPageController implements Initializable {
     }
 
     public void goToGame(MouseEvent mouseEvent) {
-        for (Node hboxNode : remainCards.getChildren()) {
+        for (Node hboxNode : deckCards.getChildren()) {
             if (hboxNode instanceof HBox) {
                 HBox remainHbox = (HBox) hboxNode;
                 for (Node imageViewNode : remainHbox.getChildren()) {

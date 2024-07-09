@@ -72,7 +72,15 @@
             <ScrollPane fx:id="availableCards" maxWidth="500">
                 <VBox fx:id="remainCards"/>
             </ScrollPane>
-            <ImageView fx:id="leaderPhoto" fitWidth="150" fitHeight="225"/>
+            <VBox alignment="CENTER">
+                <ImageView fx:id="leaderPhoto" fitWidth="150" fitHeight="225"/>
+                <Label text="Unit Cards"/>
+                <Label fx:id="countOfUnitCards" text="0"/>
+                <Label text="Special Cards"/>
+                <Label fx:id="countOfSpecialCards" text="0"/>
+                <Label text="Heroes"/>
+                <Label fx:id="countOfHeroes" text="0"/>
+            </VBox>
             <ScrollPane fx:id="deckCardsScroll" maxWidth="500">
                 <VBox fx:id="deckCards"/>
             </ScrollPane>

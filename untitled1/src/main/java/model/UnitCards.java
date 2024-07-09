@@ -160,30 +160,30 @@ public enum UnitCards {
 
 
     // Neutral Cards
-    BITING_FROST("Biting Frost", null, 0, true, 3, Arrays.asList(CardPlacement.WEATHER), null),
-    CLEAR_WEATHER("Clear Weather", null, 0, true, 3, Arrays.asList(CardPlacement.WEATHER), null),
-    COMMANDERS_HORN("Commander's horn", Ability.COMMANDERS_HORN, 0, true, 3, Arrays.asList(CardPlacement.SPELL), null),
-    DECOY("Decoy", Ability.DECOY, 0, true, 3, Arrays.asList(CardPlacement.SPELL), null),
-    IMPENETRABLE_FOG("Impenetrable fog", null, 0, true, 3, Arrays.asList(CardPlacement.WEATHER), null),
-    SCORCH("Scorch", Ability.SCORCH, 0, true, 3, Arrays.asList(CardPlacement.SPELL), null),
-    TORRENTIAL_RAIN("Torrential Rain", null, 0, true, 3, Arrays.asList(CardPlacement.WEATHER), null);
+    BITING_FROST("Biting Frost", null, 0, false, 3, Arrays.asList(CardPlacement.WEATHER), null),
+    CLEAR_WEATHER("Clear Weather", null, 0, false, 3, Arrays.asList(CardPlacement.WEATHER), null),
+    COMMANDERS_HORN("Commander's horn", Ability.COMMANDERS_HORN, 0, false, 3, Arrays.asList(CardPlacement.SPELL), null),
+    DECOY("Decoy", Ability.DECOY, 0, false, 3, Arrays.asList(CardPlacement.SPELL), null),
+    IMPENETRABLE_FOG("Impenetrable fog", null, 0, false, 3, Arrays.asList(CardPlacement.WEATHER), null),
+    SCORCH("Scorch", Ability.SCORCH, 0, false, 3, Arrays.asList(CardPlacement.SPELL), null),
+    TORRENTIAL_RAIN("Torrential Rain", null, 0, false, 3, Arrays.asList(CardPlacement.WEATHER), null),
 
 
     //???
 //    SKELLIGE_STORM("Skellige Storm", null, 0, true, 3, Arrays.asList(CardPlacement.WEATHER), null),
-//    DANDELION("Dandelion", Ability.COMMANDERS_HORN, 2, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
-//    COW("Cow", Ability.TRANSFORMER, 0, false, 1, Arrays.asList(CardPlacement.RANGED_COMBAT), null),
-//    EMIEL_REGIS("Emiel Regis", null, 5, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
-//    GAUNTER_ODIMM("Gaunter O’Dimm", Ability.MUSTER, 2, false, 1, Arrays.asList(CardPlacement.SIEGE), null),
-//    GAUNTER_ODIMM_DARKNESS("Gaunter O’DImm Darkness", Ability.MUSTER, 4, false, 3, Arrays.asList(CardPlacement.RANGED_COMBAT), null),
-//    GERALT_OF_RIVIA("Geralt of Rivia", null, 15, true, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
-//    MYSTERIOUS_ELF("Mysterious Elf", Ability.SPY, 0, true, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
-//    OLGIERD_VON_EVEREC("Olgierd Von Everec", Ability.MORALE_BOOST, 6, false, 1, Arrays.asList(CardPlacement.AGILE), null),
-//    TRISS_MERIGOLD("Triss Merigold", null, 7, true, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
-//    VESEMIR("Vesemir", null, 6, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
-//    VILLENTRETENMERTH("Villentretenmerth", Ability.SCORCH, 7, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
-//    YENNEFER_OF_VENGERBERG("Yennefer of Vengerberg", Ability.MEDIC, 7, true, 1, Arrays.asList(CardPlacement.RANGED_COMBAT), null),
-//    ZOLTAN_CHIVAY("Zoltan Chivay", null, 5, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null);
+    DANDELION("Dandelion", Ability.COMMANDERS_HORN, 2, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
+    COW("Cow", Ability.TRANSFORMER, 0, false, 1, Arrays.asList(CardPlacement.RANGED_COMBAT), null),
+    EMIEL_REGIS("Emiel Regis", null, 5, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
+    GAUNTER_ODIMM("Gaunter ODimm", Ability.MUSTER, 2, false, 1, Arrays.asList(CardPlacement.SIEGE), null),
+    GAUNTER_ODIMM_DARKNESS("Gaunter ODimm Darkness", Ability.MUSTER, 4, false, 3, Arrays.asList(CardPlacement.RANGED_COMBAT), null),
+    GERALT_OF_RIVIA("Geralt of Rivia", null, 15, true, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
+    MYSTERIOUS_ELF("Mysterious Elf", Ability.SPY, 0, true, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
+    OLGIERD_VON_EVEREC("Olgierd Von Everec", Ability.MORALE_BOOST, 6, false, 1, Arrays.asList(CardPlacement.AGILE), null),
+    TRISS_MERIGOLD("Triss Merigold", null, 7, true, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
+    VESEMIR("Vesemir", null, 6, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
+    VILLENTRETENMERTH("Villentretenmerth", Ability.SCORCH, 7, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
+    YENNEFER_OF_VENGERBERG("Yennefer of Vengerberg", Ability.MEDIC, 7, true, 1, Arrays.asList(CardPlacement.RANGED_COMBAT), null),
+    ZOLTAN_CHIVAY("Zoltan Chivay", null, 5, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null);
 
     private final String name;
     private final Ability ability;
