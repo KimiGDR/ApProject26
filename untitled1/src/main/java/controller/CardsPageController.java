@@ -21,6 +21,7 @@ import view.PreGame;
 
 import java.net.URL;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CardsPageController implements Initializable {
@@ -96,7 +97,6 @@ public class CardsPageController implements Initializable {
             e.printStackTrace();
         }
     }
-
 
     public void showCards() {
         remainCards.setSpacing(10);
@@ -230,12 +230,38 @@ public class CardsPageController implements Initializable {
         }
     }
 
+    public void checkSave() {
+        for (Node hboxNode : deckCards.getChildren()) {
+            if (hboxNode instanceof HBox) {
+                HBox deckHbox = (HBox) hboxNode;
+                for (Node imageViewNode : deckHbox.getChildren()) {
+                    if (imageViewNode instanceof ImageView) {
+                        ImageView imageView = (ImageView) imageViewNode;
+                        for (UnitCards unitCard : Card.cardsOfFaction) {
+                            if (Objects.equals(imageView.getId(), unitCard.getName())) {
+                                User.cardsInUse.add(unitCard);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Saving");
+        alert.setContentText("Do you want to save this deck ton use it in next plays?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            User.savedCards = User.cardsInUse;
+        }
+    }
+
     public void goToGame(MouseEvent mouseEvent) {
         if (Integer.parseInt(countOfUnitCards.getText()) < 22)
             showAlertOfDeck("unit");
         else if (Integer.parseInt(countOfSpecialCards.getText()) > 10)
             showAlertOfDeck("special");
         else {
+            checkSave();
             Game game = new Game();
             try {
                 game.start(CardsPage.stage);

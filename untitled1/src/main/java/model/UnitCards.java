@@ -175,7 +175,7 @@ public enum UnitCards {
     COW("Cow", Ability.TRANSFORMER, 0, false, 1, Arrays.asList(CardPlacement.RANGED_COMBAT), null),
     EMIEL_REGIS("Emiel Regis", null, 5, false, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
     GAUNTER_ODIMM("Gaunter ODimm", Ability.MUSTER, 2, false, 1, Arrays.asList(CardPlacement.SIEGE), null),
-    GAUNTER_ODIMM_DARKNESS("Gaunter ODimm Darkness", Ability.MUSTER, 4, false, 3, Arrays.asList(CardPlacement.RANGED_COMBAT), null),
+//    GAUNTER_ODIMM_DARKNESS("Gaunter Odimm Darkness", Ability.MUSTER, 4, false, 3, Arrays.asList(CardPlacement.RANGED_COMBAT), null),
     GERALT_OF_RIVIA("Geralt of Rivia", null, 15, true, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
     MYSTERIOUS_ELF("Mysterious Elf", Ability.SPY, 0, true, 1, Arrays.asList(CardPlacement.CLOSE_COMBAT), null),
     OLGIERD_VON_EVEREC("Olgierd Von Everec", Ability.MORALE_BOOST, 6, false, 1, Arrays.asList(CardPlacement.AGILE), null),
@@ -189,7 +189,7 @@ public enum UnitCards {
     private final Ability ability;
     private final int power;
     private final boolean isHero;
-    private final int numberOfCardsInGame;
+    private int numberOfCardsInGame;
     private final List<CardPlacement> playingRows;
     private final Faction faction;
 
@@ -217,6 +217,10 @@ public enum UnitCards {
 
     public boolean isHero() {
         return isHero;
+    }
+
+    public void setNumberOfCardsInGame(int numberOfCardsInGame) {
+        this.numberOfCardsInGame = numberOfCardsInGame;
     }
 
     public int getNumberOfCardsInGame() {
